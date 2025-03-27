@@ -3,6 +3,15 @@
 import Script from 'next/script'
 import { useEffect } from 'react'
 
+// Add ConvertKit types to window object
+declare global {
+  interface Window {
+    convertkit?: {
+      refresh: () => void;
+    };
+  }
+}
+
 export default function NewsletterForm() {
   useEffect(() => {
     // Initialize ConvertKit form
