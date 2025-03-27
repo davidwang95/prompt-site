@@ -1,23 +1,21 @@
 import { Metadata } from 'next'
 import CategoryContent from '@/components/CategoryContent'
 
-export const metadata: Metadata = {
-  title: 'Category',
-  description: 'Investment AI Prompts by Category',
-}
-
 interface PageProps {
   params: { slug: string }
 }
 
-async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const capitalizedSlug = params.slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+
   return {
-    title: `${params.slug} - Investment AI Prompts`,
-    description: `Investment AI Prompts for ${params.slug}`,
+    title: `${capitalizedSlug} - Investment AI Prompts`,
+    description: `Investment AI Prompts for ${capitalizedSlug}`,
   }
 }
-
-export { generateMetadata }
 
 export default async function CategoryPage({ params }: PageProps) {
   return (
