@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 import { Linkedin, Mail, Plus, Search } from "lucide-react";
 import BackToTop from "@/components/BackToTop";
 import Script from "next/script";
@@ -37,10 +38,12 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-14 sm:h-16">
                 <Link href="/" className="text-xl font-bold text-gray-900">
-                  <img 
-                    src="/finprompterlogo.png" 
-                    alt="FinPrompter.com"
-                    className="h-8 sm:h-10 w-auto"
+                  <Image 
+                    src="/finprompterlogo.png"
+                    alt="FinPrompter Logo"
+                    width={200}
+                    height={40}
+                    priority
                   />
                 </Link>
                 <div className="flex items-center space-x-2 sm:space-x-4">
@@ -79,9 +82,11 @@ export default function RootLayout({
                     </button>
                   </form>
                   <a href="https://www.tokenbrief.xyz" target="_blank" rel="noopener noreferrer">
-                    <img 
-                      src="/by-dave-wang.png" 
-                      alt="Dave Wang"
+                    <Image 
+                      src="/by-dave-wang.png"
+                      alt="By Dave Wang"
+                      width={120}
+                      height={24}
                       className="h-8 sm:h-10 w-auto"
                     />
                   </a>
@@ -117,9 +122,11 @@ export default function RootLayout({
                   Disclaimer: These prompts are tools to enhance your research process, not financial advice
                 </p>
                 <div className="flex items-center space-x-4">
-                  <img 
-                    src="/by-dave-wang.png" 
-                    alt="Dave Wang"
+                  <Image 
+                    src="/by-dave-wang.png"
+                    alt="By Dave Wang"
+                    width={120}
+                    height={24}
                     className="h-8 w-auto"
                   />
                   <div className="flex items-center space-x-2">

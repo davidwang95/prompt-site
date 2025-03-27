@@ -1,66 +1,46 @@
-import { AssetClass, Prompt } from '@/types/prompt'
-import Link from 'next/link'
-import { Plus } from 'lucide-react'
-import SearchBar from '@/components/SearchBar'
-import CategoryCard from '@/components/CategoryCard'
-import FeaturedPrompts from '@/components/FeaturedPrompts'
 import { mockPrompts } from '@/data/mockPrompts'
+import { AssetClass } from '@/types/prompt'
+import CategoryCard from '@/components/CategoryCard'
 
 export default function Home() {
-  // Count prompts per category
-  const promptCounts = Object.values(AssetClass).reduce((acc, assetClass) => {
-    acc[assetClass] = mockPrompts.filter((p: Prompt) => p.assetClass === assetClass).length
+  // Group prompts by asset class
+  const promptsByCategory = mockPrompts.reduce((acc, prompt) => {
+    const category = prompt.assetClass
+    if (!acc[category]) {
+      acc[category] = []
+    }
+    acc[category].push(prompt)
     return acc
-  }, {} as Record<AssetClass, number>)
+  }, {} as Record<AssetClass, typeof mockPrompts>)
+
+  // Get unique categories
+  const categories = Object.keys(promptsByCategory) as AssetClass[]
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
-          <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-              AI Prompts for Smart Money
-            </h1>
-            <p className="mt-2 sm:mt-3 max-w-md mx-auto text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 md:mt-5 md:max-w-3xl">
-              Steal my prompts and replace your analyst
-            </p>
-          </div>
-          
-          {/* Search Section */}
-          <div className="mt-6 sm:mt-8 flex justify-center">
-            <div className="w-full max-w-2xl px-4 sm:px-0">
-              <SearchBar 
-                placeholder="Search prompts..."
-                className="w-full shadow-sm"
+    <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            Investment AI Prompts
+          </h1>
+          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+            A curated collection of AI prompts specifically designed for investment professionals.
+          </p>
+        </div>
+
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900">Browse by Category</h2>
+          <div className="mt-6 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+            {categories.map((assetClass) => (
+              <CategoryCard
+                key={assetClass}
+                assetClass={assetClass}
+                promptCount={promptsByCategory[assetClass].length}
               />
-              <p className="mt-2 text-sm text-gray-500 text-center">
-                {Object.values(mockPrompts).length} prompts available
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* Featured Prompts Section */}
-      <FeaturedPrompts prompts={mockPrompts} />
-
-      {/* Categories Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Specialized Prompts for Every Asset Class</h2>
-          <p className="mt-2 text-base sm:text-lg text-gray-600">Unlock AI-powered insights across your entire investment universe</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {Object.values(AssetClass).map((assetClass) => (
-            <CategoryCard
-              key={assetClass}
-              assetClass={assetClass}
-              promptCount={promptCounts[assetClass]}
-            />
-          ))}
-        </div>
-        </div>
-      </main>
+    </div>
   )
 }
