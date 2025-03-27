@@ -3,7 +3,7 @@ import { AssetClass } from '@/types/prompt'
 import CategoryCard from '@/components/CategoryCard'
 import SearchBar from '@/components/SearchBar'
 import PopularPrompts from '@/components/PopularPrompts'
-import { ArrowRight, Sparkles, Clock, Users } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function Home() {
   // Group prompts by asset class
@@ -41,53 +41,6 @@ export default function Home() {
                 </div>
               </div>
             </main>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <Sparkles className="h-6 w-6 text-blue-600" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Expert-Crafted</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Prompts designed by investment professionals for real-world use
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <Clock className="h-6 w-6 text-blue-600" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Time-Saving</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Get insights and analysis in seconds instead of hours
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <Users className="h-6 w-6 text-blue-600" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Community-Tested</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Proven prompts used by hundreds of finance professionals
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

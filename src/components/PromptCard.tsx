@@ -22,18 +22,34 @@ export default function PromptCard({ prompt }: PromptCardProps) {
   const debouncedTooltip = useCallback(
     debounce((show: boolean) => {
       setShowTooltip(show)
-    }, 100),
+    }, 50),
     []
   )
 
   useEffect(() => {
     addToRecentlyViewed(prompt)
 
-    // Cleanup debounce on unmount
+    // Add click outside handler
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (showTooltip) {
+        const target = event.target as HTMLElement
+        if (!target.closest('.prompt-card')) {
+          setShowTooltip(false)
+        }
+      }
+    }
+
+    // Add event listeners with correct types
+    document.addEventListener('click', handleClickOutside as EventListener)
+    document.addEventListener('touchstart', handleClickOutside as EventListener)
+
+    // Cleanup
     return () => {
       debouncedTooltip.cancel()
+      document.removeEventListener('click', handleClickOutside as EventListener)
+      document.removeEventListener('touchstart', handleClickOutside as EventListener)
     }
-  }, [prompt.id, debouncedTooltip])
+  }, [prompt.id, debouncedTooltip, showTooltip])
 
   const addToRecentlyViewed = useCallback((prompt: Prompt) => {
     const recentlyViewed = JSON.parse(localStorage.getItem('recently-viewed') || '[]')
@@ -68,9 +84,10 @@ export default function PromptCard({ prompt }: PromptCardProps) {
   return (
     <div className="relative h-full">
       <div 
-        className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 group h-full flex flex-col"
+        className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 group h-full flex flex-col prompt-card"
         onMouseEnter={() => debouncedTooltip(true)}
         onMouseLeave={() => debouncedTooltip(false)}
+        onTouchStart={() => setShowTooltip(true)}
       >
         <div className="flex justify-between items-start">
           <div className="flex-1">
