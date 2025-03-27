@@ -57,30 +57,6 @@ export default function RootLayout({
                     <Search className="h-4 w-4 mr-2 group-hover:text-blue-500" />
                     <span className="hidden sm:inline group-hover:text-blue-500">Search Prompts</span>
                   </Link>
-                  <form
-                    action="https://app.convertkit.com/forms/e527a12c4d/subscriptions"
-                    className="hidden sm:flex items-center gap-2 mr-4"
-                    method="post"
-                    data-sv-form="e527a12c4d"
-                    data-uid="e527a12c4d"
-                    data-format="inline"
-                    data-version="5"
-                  >
-                    <input
-                      type="email"
-                      name="email_address"
-                      aria-label="Email Address"
-                      placeholder="Get weekly prompting tips"
-                      required
-                      className="px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                    />
-                    <button
-                      type="submit"
-                      className="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm"
-                    >
-                      Subscribe
-                    </button>
-                  </form>
                   <a href="https://www.tokenbrief.xyz" target="_blank" rel="noopener noreferrer">
                     <Image 
                       src="/by-dave-wang.png"
@@ -130,15 +106,17 @@ export default function RootLayout({
                 />
               </Link>
               <a
-                href="https://twitter.com/davidwangdotxyz"
+                href="https://x.com/DaveWangMIA/articles"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-800"
               >
-                <Twitter className="h-5 w-5" />
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
               </a>
               <a
-                href="https://www.linkedin.com/in/davidwangxyz/"
+                href="https://www.linkedin.com/in/davewangmia/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-800"
