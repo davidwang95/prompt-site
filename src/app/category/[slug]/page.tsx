@@ -1,12 +1,19 @@
 import { Metadata } from 'next'
 import CategoryContent from '@/components/CategoryContent'
 
+interface PageParams {
+  slug: string
+}
+
+interface PageProps {
+  params: Promise<PageParams>
+}
+
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
-  const capitalizedSlug = params.slug
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const capitalizedSlug = slug
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ')
@@ -17,14 +24,13 @@ export async function generateMetadata({
   }
 }
 
-export default function CategoryPage({
+export default async function CategoryPage({
   params,
-}: {
-  params: { slug: string }
-}) {
+}: PageProps) {
+  const { slug } = await params
   return (
     <div className="container mx-auto px-4 py-8">
-      <CategoryContent slug={params.slug} />
+      <CategoryContent slug={slug} />
     </div>
   );
 } 
