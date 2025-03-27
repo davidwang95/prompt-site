@@ -1,11 +1,16 @@
+import { Metadata } from 'next'
 import CategoryContent from '@/components/CategoryContent'
 
-type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+export const metadata: Metadata = {
+  title: 'Category',
+  description: 'Investment AI Prompts by Category',
 }
 
-export default async function CategoryPage({ params }: Props) {
+export default function CategoryPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
   return (
     <div className="container mx-auto px-4 py-8">
       <CategoryContent slug={params.slug} />
