@@ -14,8 +14,69 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "FinPrompter.com",
-  description: "A curated collection of AI prompts for investment professionals",
+  metadataBase: new URL('https://finprompter.com'),
+  title: {
+    default: "FinPrompter.com - AI Prompts for Investment Professionals",
+    template: "%s | FinPrompter"
+  },
+  description: "Expert-crafted AI prompts for investment professionals. Get instant market analysis, research insights, and financial recommendations using ChatGPT and Claude.",
+  keywords: ["AI prompts", "investment", "finance", "ChatGPT", "market analysis", "trading", "investment research"],
+  authors: [{ name: "Dave Wang" }],
+  creator: "Dave Wang",
+  publisher: "FinPrompter",
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/safari-pinned-tab.svg',
+        color: '#2563eb'
+      }
+    ]
+  },
+  manifest: '/manifest.json',
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://finprompter.com",
+    siteName: "FinPrompter",
+    title: "FinPrompter - AI Prompts for Investment Professionals",
+    description: "Expert-crafted AI prompts for investment professionals. Get instant market analysis, research insights, and financial recommendations.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FinPrompter - AI Prompts for Investment Professionals"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@DaveWangMIA",
+    creator: "@DaveWangMIA",
+    images: "/og-image.png",
+    title: "FinPrompter - AI Prompts for Investment Professionals",
+    description: "Expert-crafted AI prompts for investment professionals. Get instant market analysis, research insights, and financial recommendations."
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  themeColor: '#2563eb'
 };
 
 export default function RootLayout({
@@ -63,7 +124,7 @@ export default function RootLayout({
                       alt="By Dave Wang"
                       width={120}
                       height={24}
-                      className="h-8 sm:h-10 w-auto"
+                      className="hidden sm:block h-8 sm:h-10 w-auto"
                     />
                   </a>
                   <a href="https://x.com/DaveWangMIA/articles" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
