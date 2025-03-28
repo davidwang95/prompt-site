@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Mail, Plus, Search, Twitter } from "lucide-react";
 import BackToTop from "@/components/BackToTop";
+import Analytics from "@/components/Analytics";
 import Script from "next/script";
 
 const inter = Inter({
@@ -93,6 +94,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        <Analytics />
         <div className="min-h-screen bg-gray-50">
           {/* Top Banner */}
           <div className="bg-white border-b">

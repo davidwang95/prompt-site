@@ -4,6 +4,7 @@ import { Prompt } from '@/types/prompt'
 import { Copy, Check, Loader2, Maximize2 } from 'lucide-react'
 import { useState, useEffect, useCallback, lazy, Suspense } from 'react'
 import { debounce } from 'lodash'
+import { trackEvent } from '@/lib/analytics'
 
 // Lazy load components
 const FullScreenPrompt = lazy(() => import('./FullScreenPrompt'))
@@ -66,6 +67,8 @@ export default function PromptCard({ prompt }: PromptCardProps) {
       setIsLoading(true)
       await navigator.clipboard.writeText(prompt.prompt)
       setIsCopied(true)
+      // Track the copy event
+      trackEvent('click', 'prompt', `copy_prompt_${prompt.id}`)
       setTimeout(() => {
         setIsCopied(false)
       }, 1000)
