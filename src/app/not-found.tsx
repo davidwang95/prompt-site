@@ -1,18 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-// Separate component that uses useSearchParams
-function SearchParamsComponent() {
-  // This will be wrapped in Suspense
-  useSearchParams();
-  return null;
-}
-
-function NotFoundContent() {
+export default function NotFound() {
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -31,16 +22,5 @@ function NotFoundContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function NotFound() {
-  return (
-    <>
-      <Suspense>
-        <SearchParamsComponent />
-      </Suspense>
-      <NotFoundContent />
-    </>
   );
 } 
