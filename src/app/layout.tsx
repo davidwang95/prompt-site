@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
@@ -13,6 +13,10 @@ const inter = Inter({
   display: 'swap',
   variable: '--font-inter',
 });
+
+export const viewport: Viewport = {
+  themeColor: '#2563eb'
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://finprompter.com'),
@@ -77,7 +81,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  themeColor: '#2563eb'
 };
 
 export default function RootLayout({
