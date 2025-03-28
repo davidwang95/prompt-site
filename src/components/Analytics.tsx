@@ -2,12 +2,12 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 
 // Replace this with your actual GA4 Measurement ID
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
-export default function Analytics() {
+function AnalyticsContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -45,5 +45,13 @@ export default function Analytics() {
         }}
       />
     </>
+  );
+}
+
+export default function Analytics() {
+  return (
+    <Suspense>
+      <AnalyticsContent />
+    </Suspense>
   );
 } 
