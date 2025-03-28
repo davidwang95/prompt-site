@@ -5,9 +5,14 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
+// Separate component that uses useSearchParams
+function SearchParamsComponent() {
+  // This will be wrapped in Suspense
+  useSearchParams();
+  return null;
+}
+
 function NotFoundContent() {
-  const searchParams = useSearchParams();
-  
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -31,16 +36,11 @@ function NotFoundContent() {
 
 export default function NotFound() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">Loading...</h1>
-          </div>
-        </div>
-      </div>
-    }>
+    <>
+      <Suspense>
+        <SearchParamsComponent />
+      </Suspense>
       <NotFoundContent />
-    </Suspense>
+    </>
   );
 } 
